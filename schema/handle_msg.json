@@ -3,35 +3,53 @@
   "title": "HandleMsg",
   "anyOf": [
     {
+      "description": "Owner can transfer to a new owner",
       "type": "object",
       "required": [
-        "increment"
+        "transfer"
       ],
       "properties": {
-        "increment": {
+        "transfer": {
+          "type": "object",
+          "required": [
+            "recipient"
+          ],
+          "properties": {
+            "recipient": {
+              "$ref": "#/definitions/HumanAddr"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "Owner can post counter_offer on unexpired option to execute and get the collateral",
+      "type": "object",
+      "required": [
+        "execute"
+      ],
+      "properties": {
+        "execute": {
           "type": "object"
         }
       }
     },
     {
+      "description": "Burn will release collateral if expired",
       "type": "object",
       "required": [
-        "reset"
+        "burn"
       ],
       "properties": {
-        "reset": {
-          "type": "object",
-          "required": [
-            "count"
-          ],
-          "properties": {
-            "count": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
+        "burn": {
+          "type": "object"
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "HumanAddr": {
+      "type": "string"
+    }
+  }
 }
